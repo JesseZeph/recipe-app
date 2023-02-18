@@ -23,7 +23,7 @@ class ExploreScreen extends StatelessWidget {
             scrollDirection: Axis.vertical,
             children: [
               TodayRecipeListView(recipes: snapshot.data?.todayRecipes ?? []),
-              const SizedBox(height: 16),
+              const SizedBox(height: 15),
               FriendPostListView(friendPost: snapshot.data?.friendPosts ?? []),
               // Container(
               //   height: 400,
