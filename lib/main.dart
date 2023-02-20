@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'thinees_theme.dart';
 import 'home.dart';
+import 'package:provider/provider.dart';
+import 'models/models.dart';
 
 void main() {
   runApp(const ThineesRecipes());
@@ -13,13 +15,19 @@ class ThineesRecipes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ThineesTheme.dark();
+    final theme = ThineesTheme.light();
 
     // home widget
     return MaterialApp(
       theme: theme,
       title: 'Thinees Kitchen',
-      home: const Home(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => TabManager()),
+          ChangeNotifierProvider(create: (context) => GroceryManager()),
+        ],
+        child: const Home(),
+      ),
     );
   }
 }
