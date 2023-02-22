@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 import '../models/models.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
@@ -38,7 +38,12 @@ class EmptyGroceryScreen extends StatelessWidget {
               ),
               color: Colors.green,
               onPressed: () {
-                Provider.of<TabManager>(context, listen: false).goToRecipes();
+                context.goNamed(
+                  'home',
+                  params: {
+                    'tab': '${ThineesTab.recipes}',
+                  },
+                );
               },
               child: const Text('Browse Recipes'),
             )

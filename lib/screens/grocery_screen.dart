@@ -3,6 +3,8 @@ import 'empty_grocery_screen.dart';
 import 'package:provider/provider.dart';
 import '../models/models.dart';
 import 'grocery_item_screen.dart';
+import 'grocery_list_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class GroceryScreen extends StatelessWidget {
   const GroceryScreen({super.key});
@@ -13,19 +15,12 @@ class GroceryScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          final manager = Provider.of<GroceryManager>(context, listen: false);
-
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => GroceryItemScreen(
-                onCreate: (item) {
-                  manager.addItem(item);
-                  Navigator.pop(context);
-                },
-                onUpdate: (item) {},
-              ),
-            ),
+          context.goNamed(
+            'item',
+            params: {
+              'tab': '${ThineesTab.toBuy}',
+              'id': 'new',
+            },
           );
         },
       ),
@@ -37,8 +32,7 @@ class GroceryScreen extends StatelessWidget {
     return Consumer<GroceryManager>(
       builder: (context, manager, child) {
         if (manager.groceryItems.isNotEmpty) {
-          //Add grocery list items
-          return Container();
+          return GroceryListScreen(manager: manager);
         } else {
           return const EmptyGroceryScreen();
         }
