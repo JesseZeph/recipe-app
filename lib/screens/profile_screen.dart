@@ -47,7 +47,7 @@ class ProfileScreenState extends State<ProfileScreen> {
           title: const Text('View thineesrecipes.com'),
           onTap: () async {
             if (kIsWeb || Platform.isMacOS) {
-              await launchUrl(Uri.parse('https://cindyfreetips.shop/'));
+              await launchUrl(Uri.parse('https://jessezephyr.com/'));
             } else {
               context.goNamed(
                 'tk',
